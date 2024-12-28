@@ -1,7 +1,7 @@
 /********** Template CSS **********/
 :root {
     --primary: #114779;
-    --secondary: #FFC448;
+    --secondary: #6bc2ed;
     --light: #FAFAFB;
     --dark: #12141D;
 }
@@ -571,4 +571,54 @@
     100% {
         transform: translateY(120vh) rotate(360deg);
     }
+}
+
+.about-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    background: var(--primary);
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.about-icon:hover {
+    background-color: var(--secondary);
+}
+
+.about-icon i {
+    color: white;
+}
+
+.progress-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+.progress {
+    background-color: #f3f3f3;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    height: 30px;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, #114779, #6bc2ed);
+    height: 100%;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    line-height: 30px;
+    border-radius: 20px 0 0 20px;
+    transition: width 1.5s ease-in-out;
+}
+
+.service-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
