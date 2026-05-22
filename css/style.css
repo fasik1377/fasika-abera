@@ -101,9 +101,15 @@
 
 /*** Header ***/
 #home {
+  position: relative;
+  overflow: hidden;
   margin-bottom: 6rem;
-  /***background: url(../img/bg-header.png) left top no-repeat;***/
-  background: url("../img/bg4.png") no-repeat center center/cover;
+  background: #eef9ff;
+}
+
+#home > .container {
+  position: relative;
+  z-index: 2;
 }
 
 .typed-cursor {
@@ -420,145 +426,321 @@
   background: var(--primary);
 }
 
-.hero__images {
+/*=============== HERO BACKGROUND (animated engineering flow) ===============*/
+
+.hero-bg {
   position: absolute;
-  top: 0;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(107, 194, 237, 0.32), transparent 28%),
+    radial-gradient(circle at 88% 8%, rgba(17, 71, 121, 0.12), transparent 24%),
+    linear-gradient(120deg, #f7fcff 0%, #e8f7ff 42%, #ffffff 100%);
+}
+
+.hero-bg * {
+  box-sizing: border-box;
+}
+
+/* Ensure hero content and image are above the animated background */
+#home .container .row > .col-lg-6 {
+  position: relative;
+  z-index: 10;
+}
+
+#home .container .row > .col-lg-6 img.img-fluid {
+  position: relative;
+  z-index: 12;
+  max-width: 420px;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+/* Ensure hero text and controls are above the animated background */
+#home h1, #home h2, #home .typed-text-output, #downloadCv {
+  position: relative;
+  z-index: 15;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.06);
+}
+
+/* Button prominence */
+#downloadCv {
+  box-shadow: 0 8px 20px rgba(17,71,121,0.18);
+}
+
+.hero-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 0 48%, rgba(17, 71, 121, 0.08) 48% 52%, transparent 52% 100%),
+    linear-gradient(0deg, transparent 0 48%, rgba(107, 194, 237, 0.11) 48% 52%, transparent 52% 100%);
+  background-size: 160px 160px;
+  opacity: 0.7;
+  animation: heroGridDrift 18s linear infinite;
+}
+
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0.65) 48%, rgba(255, 255, 255, 0) 76%);
+  transform: translateX(-100%);
+  animation: heroLightSweep 9s ease-in-out infinite;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: -15%;
+  background-image:
+    linear-gradient(rgba(17, 71, 121, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17, 71, 121, 0.08) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+  animation: heroBlueprint 24s linear infinite;
+}
+
+.hero-flow {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(17, 71, 121, 0.6), rgba(107, 194, 237, 0.85), transparent);
+  box-shadow: 0 0 18px rgba(107, 194, 237, 0.35);
+  transform-origin: left center;
+}
+
+.flow-one {
+  width: 46%;
+  left: 7%;
+  top: 23%;
+  animation: heroFlow 6.5s ease-in-out infinite;
+}
+
+.flow-two {
+  width: 35%;
+  right: 6%;
+  top: 48%;
+  transform: rotate(-8deg);
+  animation: heroFlow 7.5s ease-in-out infinite 1.2s;
+}
+
+.flow-three {
+  width: 48%;
+  left: 30%;
+  bottom: 20%;
+  transform: rotate(5deg);
+  animation: heroFlow 8.5s ease-in-out infinite 0.6s;
+}
+
+.code-rain {
+  position: absolute;
+  display: grid;
+  gap: 18px;
+  min-width: 320px;
+  color: rgba(17, 71, 121, 0.38);
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: 0;
+  opacity: 0.65;
+  transform: rotate(-8deg);
+  animation: codeFloat 16s linear infinite;
+}
+
+.code-rain span {
+  display: block;
+  width: max-content;
+  max-width: 340px;
+  padding: 8px 12px;
+  border-left: 2px solid rgba(107, 194, 237, 0.45);
+  background: rgba(255, 255, 255, 0.38);
+  box-shadow: 0 12px 30px rgba(17, 71, 121, 0.05);
+}
+
+.rain-one {
+  top: 16%;
+  left: 46%;
+}
+
+.rain-two {
+  right: 4%;
+  bottom: 16%;
+  transform: rotate(7deg);
+  animation-name: codeFloatAlt;
+  animation-duration: 19s;
+  animation-delay: -6s;
+}
+
+.terminal-card {
+  position: absolute;
+  width: 245px;
+  padding: 34px 18px 16px;
+  border: 1px solid rgba(17, 71, 121, 0.13);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.58);
+  box-shadow: 0 20px 60px rgba(17, 71, 121, 0.1);
+  backdrop-filter: blur(8px);
+  color: rgba(18, 20, 29, 0.54);
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  font-size: 13px;
+  letter-spacing: 0;
+  animation: terminalFloat 13s ease-in-out infinite;
+}
+
+.terminal-card::before {
+  content: "";
+  position: absolute;
   left: 0;
   right: 0;
-  bottom: 0;
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  height: 100%;
+  top: 25px;
+  height: 1px;
+  background: rgba(17, 71, 121, 0.08);
 }
 
-.hero__image {
+.terminal-card p {
+  margin: 0 0 9px;
+}
+
+.terminal-card p:last-child {
+  margin-bottom: 0;
+  color: rgba(17, 71, 121, 0.62);
+}
+
+.terminal-dot {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  background-size: cover;
+  top: 10px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(17, 71, 121, 0.3);
 }
 
-.hero-1 {
-  background: url(../img/hero1.png) no-repeat center center/cover;
+.terminal-dot:nth-child(1) {
+  left: 13px;
 }
 
-.hero-2 {
-  background: url(../img/hero2.png) no-repeat center center/cover;
+.terminal-dot:nth-child(2) {
+  left: 26px;
+  background: rgba(107, 194, 237, 0.58);
 }
 
-/**.hero-3 {
-    background: url(../img/hero3.png) no-repeat center center/cover;
+.terminal-dot:nth-child(3) {
+  left: 39px;
+  background: rgba(4, 120, 87, 0.25);
 }
 
-.hero-4 {
-    background: url(../img/hero4.png) no-repeat center center/cover;
-}**/
-
-/**.hero-5 {
-    background: url(../img/hero5.png) no-repeat center center/cover;
-}**/
-
-/**.hero-6 {
-    background: url(../img/merry-christmas2.png) no-repeat center center/cover;        
-}**/
-
-/**.hero-7 {
-    background: url(../img/hero7.png) no-repeat center center/cover;
-}**/
-
-/**.hero-8 {
-    background: url(../img/hero8.png) no-repeat center center/cover;
-}**/
-
-/*=============== SNOW FALL ===============*/
-
-.falling-snowflakes {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 100;
+.terminal-one {
+  left: 4%;
+  top: 36%;
 }
 
-.snow {
+.terminal-two {
+  right: 10%;
+  top: 28%;
+  width: 215px;
+  animation-delay: -4s;
+}
+
+.hero-panel {
   position: absolute;
-  top: -10%;
-  width: 80px;
-  height: 80px;
-  animation: fall linear infinite;
-  transform-origin: top center;
-  opacity: 0 8;
+  width: 168px;
+  height: 92px;
+  border: 1px solid rgba(17, 71, 121, 0.12);
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, rgba(17, 71, 121, 0.1) 0 22%, transparent 22% 100%),
+    repeating-linear-gradient(0deg, rgba(107, 194, 237, 0.18) 0 2px, transparent 2px 17px),
+    rgba(255, 255, 255, 0.42);
+  box-shadow: 0 18px 55px rgba(17, 71, 121, 0.08);
+  animation: heroPanelFloat 11s ease-in-out infinite;
 }
 
-.snowflake1 {
-  background: url(../img/snow1.png) no-repeat center/contain;
-  animation-duration: 8s;
-  animation-delay: 0s;
-  left: 10%;
+.panel-one {
+  top: 14%;
+  right: 16%;
 }
 
-.snowflake2 {
-  background: url(../img/snow2.png) no-repeat center/contain;
-  animation-duration: 10s;
-  animation-delay: 2s;
-  left: 20%;
+.panel-two {
+  left: 9%;
+  bottom: 14%;
+  animation-delay: 1.8s;
 }
 
-.snowflake3 {
-  background: url(../img/snow3.png) no-repeat center/contain;
-  animation-duration: 12s;
-  animation-delay: 4s;
-  left: 30%;
-}
-
-.snowflake4 {
-  background: url(../img/snow4.png) no-repeat center/contain;
-  animation-duration: 9s;
-  animation-delay: 1s;
-  left: 40%;
-}
-
-.snowflake5 {
-  background: url(../img/snow5.png) no-repeat center/contain;
-  animation-duration: 7s;
+.panel-three {
+  right: 34%;
+  bottom: 9%;
+  width: 132px;
+  height: 72px;
   animation-delay: 3s;
-  left: 50%;
 }
 
-.snowflake6 {
-  background: url(../img/snow6.png) no-repeat center/contain;
-  animation-duration: 11s;
-  animation-delay: 3s;
-  left: 60%;
+@keyframes heroGridDrift {
+  from { background-position: 0 0; }
+  to { background-position: 160px 160px; }
 }
 
-.snowflake7 {
-  background: url(../img/snow7.png) no-repeat center/contain;
-  animation-duration: 10s;
-  animation-delay: 5s;
-  left: 70%;
+@keyframes heroBlueprint {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(44px, 44px, 0); }
 }
 
-.snowflake8 {
-  background: url(../img/snow8.png) no-repeat center/contain;
-  animation-duration: 9s;
-  animation-delay: 2s;
-  left: 80%;
+@keyframes heroLightSweep {
+  0%, 34% { transform: translateX(-100%); opacity: 0; }
+  52% { opacity: 0.75; }
+  72%, 100% { transform: translateX(100%); opacity: 0; }
 }
 
-@keyframes fall {
-  0% {
-    transform: translateY(0) rotate(0deg);
+@keyframes heroFlow {
+  0%, 100% { opacity: 0.24; clip-path: inset(0 88% 0 0); }
+  42% { opacity: 0.85; clip-path: inset(0 0 0 0); }
+  70% { opacity: 0.3; clip-path: inset(0 0 0 82%); }
+}
+
+@keyframes heroPanelFloat {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.5; }
+  50% { transform: translate3d(12px, -14px, 0); opacity: 0.82; }
+}
+
+@keyframes codeFloat {
+  0% { transform: translate3d(0, 18px, 0) rotate(-8deg); }
+  50% { transform: translate3d(-24px, -14px, 0) rotate(-8deg); }
+  100% { transform: translate3d(0, 18px, 0) rotate(-8deg); }
+}
+
+@keyframes codeFloatAlt {
+  0% { transform: translate3d(0, 12px, 0) rotate(7deg); }
+  50% { transform: translate3d(22px, -18px, 0) rotate(7deg); }
+  100% { transform: translate3d(0, 12px, 0) rotate(7deg); }
+}
+
+@keyframes terminalFloat {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.5; }
+  50% { transform: translate3d(-10px, 16px, 0); opacity: 0.78; }
+}
+
+@media (max-width: 991.98px) {
+  .hero-panel {
+    opacity: 0.45;
   }
 
-  100% {
-    transform: translateY(120vh) rotate(360deg);
+  .code-rain,
+  .terminal-card {
+    opacity: 0.36;
+  }
+
+  .terminal-one,
+  .rain-one {
+    display: none;
+  }
+
+  .panel-one {
+    right: -34px;
+  }
+
+  .panel-two,
+  .flow-three {
+    display: none;
   }
 }
 
@@ -642,4 +824,23 @@
 
 .project-content p {
   margin-bottom: 15px;
+}
+
+/* Hero entrance animations */
+#home img.img-fluid.portrait-enter {
+  animation: portraitIn 900ms ease-out forwards;
+  transform: translateY(18px);
+  opacity: 0;
+}
+@keyframes portraitIn {
+  to { transform: translateY(0); opacity: 1; }
+}
+
+#home .hero-text-appear {
+  animation: heroTextIn 900ms ease-out forwards;
+  opacity: 0;
+  transform: translateY(8px);
+}
+@keyframes heroTextIn {
+  to { transform: translateY(0); opacity: 1; }
 }

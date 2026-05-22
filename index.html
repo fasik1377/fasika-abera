@@ -70,30 +70,44 @@
 
     <!-- Header Start -->
     <div class="container-fluid bg-light my-6 mt-0" id="home">
+        <div class="hero-bg" aria-hidden="true">
+            <div class="hero-grid"></div>
+            <div class="hero-flow flow-one"></div>
+            <div class="hero-flow flow-two"></div>
+            <div class="hero-flow flow-three"></div>
+            <div class="code-rain rain-one">
+                <span>const sprint = plan.map(build);</span>
+                <span>git commit -m "ship value"</span>
+                <span>await deploy(project);</span>
+            </div>
+            <div class="code-rain rain-two">
+                <span>function lead(team) { return clarity; }</span>
+                <span>npm run release</span>
+                <span>status: delivered</span>
+            </div>
+            <div class="terminal-card terminal-one">
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot"></span>
+                <p>$ npm run build</p>
+                <p>&check; requirements aligned</p>
+                <p>&check; software shipped</p>
+            </div>
+            <div class="terminal-card terminal-two">
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot"></span>
+                <span class="terminal-dot"></span>
+                <p>roadmap.sprint(21)</p>
+                <p>risk.monitor()</p>
+                <p>team.deliver()</p>
+            </div>
+            <div class="hero-panel panel-one"></div>
+            <div class="hero-panel panel-two"></div>
+            <div class="hero-panel panel-three"></div>
+        </div>
         <div class="container">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 py-6 pb-0 pt-lg-0">
-                    <div class="hero__images">
-                        <div class="hero__image hero-1"></div>
-                        <div class="hero__image hero-2"></div>
-                        <div class="hero__image hero-3"></div>
-                        <div class="hero__image hero-4"></div>
-                        <div class="hero__image hero-5"></div>
-                        <div class="hero__image hero-6"></div>
-                        <div class="hero__image hero-7"></div>
-                        <div class="hero__image hero-8"></div>
-                    </div><!-- ===============SNOW FALLING=============== -->
-
-                    <div class="falling-snowflakes">
-                        <div class="snow snowflake1"></div>
-                        <div class="snow snowflake2"></div>
-                        <div class="snow snowflake3"></div>
-                        <div class="snow snowflake4"></div>
-                        <div class="snow snowflake5"></div>
-                        <div class="snow snowflake6"></div>
-                        <div class="snow snowflake7"></div>
-                        <div class="snow snowflake8"></div>
-                    </div>
                     <h3 class="text-primary mb-3">I'm</h3>
                     <h1 class="display-3 mb-3">Fasika Abera</h1>
                     <h2 class="typed-text-output d-inline"></h2>
@@ -101,8 +115,7 @@
                         Apps Developer,
                         Social Media Manager,</div>
                     <div class="d-flex align-items-center pt-5">
-                        <a href="Fasika Abera Updated.pdf" target="_blank"
-                            class="btn btn-primary py-3 px-4 me-5">Download CV</a>
+                        <a href="#" id="downloadCv" class="btn btn-primary py-3 px-4 me-5">Download CV</a>
                         <button type="button" class="btn-play" data-bs-toggle="modal"
                             data-src="https://youtube.com/embed/fPutigSxO0A" data-bs-target="#videoModal">
                             <span></span>
@@ -847,30 +860,36 @@
                 </div>
                 <div class="col-lg-7 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <p class="mb-4">You can contact Fasika Abera by sending email here!</p>
-                    <form>
+                    <form action="https://formsubmit.co/fasikabera1@gmail.com" method="POST">
+                        <input type="hidden" name="_subject" value="New portfolio message for Fasika Abera">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                    <input type="text" class="form-control" id="name" name="name"
+                                        placeholder="Your Name" required>
                                     <label for="name">Your Name</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        placeholder="Your Email" required>
                                     <label for="email">Your Email</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                    <input type="text" class="form-control" id="subject" name="subject"
+                                        placeholder="Subject" required>
                                     <label for="subject">Subject</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
                                     <textarea class="form-control" placeholder="Leave a message here" id="message"
-                                        style="height: 100px"></textarea>
+                                        name="message" style="height: 100px" required></textarea>
                                     <label for="message">Message</label>
                                 </div>
                             </div>
@@ -938,6 +957,7 @@
     <script src="lib/lightbox/js/lightbox.min.js"></script>
 
     <!-- Template Javascript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 

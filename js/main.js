@@ -121,6 +121,49 @@
         loop: true,
     });
 
-    
+    // Download CV - generate PDF on the fly using jsPDF
+    $(document).on('click', '#downloadCv', function (e) {
+        e.preventDefault();
+        try {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            doc.setFontSize(20);
+            doc.text('Fasika Abera', 20, 30);
+            doc.setFontSize(12);
+            const lines = [
+                'Software Engineer | Project Manager | Full Stack Developer',
+                '',
+                'Email: fasikabera1@gmail.com',
+                'Phone: +251964037658',
+                '',
+                'Summary:',
+                'Experienced software engineer with strengths in web & mobile development,',
+                'UI/UX design and project management. Skilled in PHP, JS, React, Flutter,',
+                'MySQL and cross-platform app development.'
+            ];
+            let y = 42;
+            lines.forEach(function (line) {
+                doc.text(line, 20, y);
+                y += 8;
+            });
+            doc.save('Fasika Abera New.pdf');
+        } catch (err) {
+            console.error('PDF generation failed', err);
+            // fallback: try to open existing file if present
+            window.open('Fasika Abera Updated.pdf', '_blank');
+        }
+    });
+
+    // Hero entrance animations: add classes to portrait and text for subtle reveal
+    $(window).on('load', function() {
+        // portrait image
+        var $portrait = $('#home img.img-fluid');
+        if ($portrait.length) {
+            $portrait.addClass('portrait-enter');
+        }
+        // hero text elements
+        $('#home h1, #home h2, .typed-text-output, #downloadCv').addClass('hero-text-appear');
+    });
+
 })(jQuery);
 
